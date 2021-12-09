@@ -4,8 +4,8 @@
 # imports up here can be used to
 import pandas as pd
 import numpy as np
-import os
-os.system(f"pip install yfinance")
+# import os
+# os.system(f"pip install yfinance")
 import yfinance as yf
 
 # The entry point function MUST have two input arguments.
@@ -21,7 +21,6 @@ def azureml_main(dataframe1 = None, dataframe2 = None):
 
     ## Parameters
     PRICES = ["THE", "NCG", "TTF", "GASPOOL", "ZTP", "PEG"]
-    CONTRACT_TYPES = ["Win", "Sum", "Q"]
     MWH_PER_THERMS = 0.0293071
     PENCE_PER_POUND = 100
 
@@ -70,7 +69,7 @@ def azureml_main(dataframe1 = None, dataframe2 = None):
     # E.g.
     #   -  Single return value: return dataframe1,
     #   -  Two return values: return dataframe1, dataframe2
-    return df_mapped
+    return df_price
 
 def create_mapped_dataframe(
     df: pd.DataFrame, df_instruments: pd.DataFrame, prices: list):
@@ -93,6 +92,8 @@ def create_mapped_dataframe(
     df_mapped.index = df_mapped.index.tz_localize("CET", ambiguous=True).tz_convert(
         "UTC"
     )
+
+    df_mapped = df_mapped[df_mapped["FirstSequenceItemName"] == "DA"]
 
     df = df_mapped[
         [
