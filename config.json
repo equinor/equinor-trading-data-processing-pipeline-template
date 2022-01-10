@@ -1,0 +1,25 @@
+{
+    "subscription_id": "ee12b3a3-ef34-4c59-86b3-27a49d5fe94d",
+    "resource_group": "ngtt-azuremlws-rg",
+    "workspace_name": "ngtt-azuremlws",
+    "compute_name": "sharedcluster",
+    "pipeline": {
+        "pipeline_description": "Data processing pipeline example",
+        "experiment_name": "data-processing-pipeline-example",
+        "input_datastore": "workspaceblobstore",
+        "output_datastore": {
+            "name": "ngttdashboardteststorage",
+            "path": "test-data"
+        },
+        "input_dataset": ["iris"],
+        "output_dataset": {
+            "dataset_name": "iris_pipeline_example",
+            "file_name": "data-processing-pipeline-example",
+            "path": "test-data"
+        },
+        "script_name": "src/aml_wrapper.py",
+        "source_directory": "."
+    },
+    "environment": "data-processing-pipeline-example",
+    "dockerfile": "Dockerfile"
+}
