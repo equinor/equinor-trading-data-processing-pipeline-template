@@ -35,6 +35,8 @@ environment = Environment(name=config.environment)
 environment.docker.base_image = None
 environment.docker.base_dockerfile = config.dockerfile
 environment.python.user_managed_dependencies=True
+aml_run_config.environment = environment
+
 
 # %%
 input_datastore = Datastore(ws, config.pipeline.output_datastore.name)
