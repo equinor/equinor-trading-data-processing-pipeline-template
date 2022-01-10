@@ -1,0 +1,5 @@
+.venv/
+docs/
+.github/
+test/
+.python_version
