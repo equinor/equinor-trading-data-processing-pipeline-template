@@ -3,3 +3,4 @@ docs/
 .github/
 test/
 .python_version
+.git/
