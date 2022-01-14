@@ -6,20 +6,32 @@
     "pipeline": {
         "pipeline_description": "Data processing pipeline example",
         "experiment_name": "data-processing-pipeline-example",
-        "input_datastore": "workspaceblobstore",
         "output_datastore": {
             "name": "ngttdashboardteststorage",
             "path": "test-data"
         },
-        "input_dataset": ["iris"],
-        "output_dataset": {
-            "dataset_name": "iris_pipeline_example",
-            "file_name": "data-processing-pipeline-example",
-            "path": "test-data"
-        },
+        "input_datasets": ["iris"],
         "script_name": "src/aml_wrapper.py",
-        "source_directory": "."
+        "source_directory": ".",
+        "pip_packages": [
+            "pandas",
+            "pydantic"
+        ]
     },
-    "environment": "data-processing-pipeline-example",
-    "dockerfile": "./Dockerfile"
+    "environment_name": "data-processing-pipeline-example",
+    "data_factory_compute_name": "adftest",
+    "trigger": {
+        "type": "schedule",
+        "trigger_name": "data-processing-pipeline-template-schedule",
+        "description": "A trigger based on either a schedule or an event trigger",
+        "frequency": "Minute",
+        "interval": 15,
+        "polling_interval": 1,
+        "change_file_path": "test.txt"
+    },
+    "endpoint": {
+        "name": "data-processing-pipeline-template-endpoint",
+        "description": "Data processing pipeline template endpoint",
+        "version": "1.0"
+    }
 }
