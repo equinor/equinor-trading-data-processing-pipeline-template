@@ -1,39 +1,28 @@
 # Equinor Trading data processing pipeline template
 
-This is a template containing all the essentials you need when creating a new repo for a project. The main components are the following:
+This repository is a template for processing data on a time schedule/change trigger using Azure Machine Learning pipelines.
+The pipeline takes an input dataset from the AML workspace and passes it to a Python script step that processes this data.
+Following this, a Data Factory job moves the output data from the script to a blob storage defined in `config.json`.
 
-- `docs` - This is folder contains the setup needed to build the docstring documentation.
-- `src` - Main folder for code modules.
-- `test` - Folder containing tests.
-- `.github/workflows/lint-and-format.yml` - Github Actions workflow for lint checking and automated testing.
-- `pre-commit-config.yaml` - Pre-commit configuration for automatically running lint checking and automated testing before committing.
-- `pyproject.toml`, `poetry.lock` - Project and package definition.
-- `setup.cfg` - Configuration of linting tools.
-
-
-## Getting started
-
-1. Install [poetry](https://python-poetry.org/docs/)
-1. Clone repository
-1. Run `poetry config virtualenvs.in-project true` followed by `poetry install` from the project root folder. A .venv folder should now be created and placed in the root of the project. 
-1. Run `poetry shell` to create a new poetry shell, followed `jupyter notebook` to open [jupyter notebook](https://jupyter.org/) in this environment. 
-1. Install pre-commit hook by running `poetry run pre-commit install`
-
-## How to build the docs
-Build `.rst` files
-
+Contents:
 ```
-poetry run sphinx-apidoc -o docs/source src
+pipeline.py     - Contains code for setting up the pipeline. In general it's not necessary to edit this file.
+aml_wrapper.py  - Wrapper code for the Python script step. In general it's not necessary to edit this file.
+process.py      - Python script that will run when the pipeline runs. Edit this file to change how the data is processed.
+config.json     - JSON file containing the configuration of the pipeline attributes.
+Config.py       - Definition of the config.json values.
 ```
 
-Build HTML files from `.rst` files
+### How to use
 
-```
-poetry run sphinx-build -b html docs/source docs/build
-```
+1. Install Poetry package manager
+2. Run `poetry install`
+3. Configure `config.json` to your liking
+4. Run `poetry run python pipeline.py` to create, deploy and schedule the pipeline
+5. Done!
 
-The docs can now be accessed under docs/build. 
-
-## Run tests
-
-`poetry run python -m pytest`
+Some additional things to be aware of:
+- You need to register the output blob storage in Azure ML if it's an external blob storage
+- Register the blob storage using managed identity, not SAS/access key
+- If your output goes back to the default workspace blob storage, this might not be necessary (not yet tested)
+- You need to give the Azure Data Factory compute the role `Blob Storage Data Contributer` role in the blob storage resource before it can save to the blob storage
