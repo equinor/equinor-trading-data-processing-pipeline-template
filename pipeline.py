@@ -126,8 +126,10 @@ else:
         description=config.trigger.description,
         pipeline_id=pipeline_run.id,
         experiment_name=experiment.name,
+        polling_interval=config.trigger.polling_interval,
         datastore=ws.get_default_datastore(),
         path_on_datastore=config.trigger.change_file_path
     )
     print(reactive_schedule)
+
 # %%
