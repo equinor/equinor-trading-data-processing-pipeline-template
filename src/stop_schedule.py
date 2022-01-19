@@ -15,5 +15,5 @@ def stop_by_schedule_id(ws, schedule_id):
     s.disable()
     return s
 
-stop_by_schedule_id(ws, "PIPELINE_ID")
+stop_by_schedule_id(ws, "SCHEDULE_ID")
 # %%
