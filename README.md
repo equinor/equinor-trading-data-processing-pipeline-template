@@ -17,10 +17,11 @@ Config.py       - Definition of the config.json values.
 
 1. Install [poetry](https://python-poetry.org/docs/)
 2. Clone this repo or create a new repo based on the template
-3. Run `poetry install`
-4. Configure `config.json` to your liking
-5. Run `poetry run python pipeline.py` to create, deploy and schedule the pipeline
-6. Done!
+3. Navigate to the project folder
+4. Run `poetry install`
+5. Configure `config.json` to your liking
+6. Run `poetry run python pipeline.py` to create, deploy and schedule the pipeline
+7. Done!
 
 Some additional things to be aware of:
 - You need to register the output blob storage in Azure ML if it's an external blob storage
