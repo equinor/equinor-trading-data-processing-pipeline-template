@@ -16,7 +16,7 @@ Config.py       - Definition of the config.json values.
 ### How to use
 
 1. Install [poetry](https://python-poetry.org/docs/)
-2. Clone this repo or create a new repo based on the template
+2. Fork this repo or create a new repo based on the template
 3. Navigate to the project folder
 4. Run `poetry install`
 5. Configure `config.json` to your liking
