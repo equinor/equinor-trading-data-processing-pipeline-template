@@ -109,14 +109,16 @@ print(pipeline_run)
 
 # %%
 if config.trigger.type == "schedule":
-    recurrence = ScheduleRecurrence(frequency=config.trigger.frequency, interval=config.trigger.interval)
     recurring_schedule = Schedule.create(
         ws,
         name=config.trigger.trigger_name, 
         description=config.trigger.description,
         pipeline_id=pipeline_run.id, 
         experiment_name=experiment.name, 
-        recurrence=recurrence
+        recurrence=ScheduleRecurrence(
+            frequency=config.trigger.frequency,
+            interval=config.trigger.interval
+        )
     )
     print(recurring_schedule)
 else:
