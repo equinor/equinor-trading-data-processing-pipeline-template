@@ -21,13 +21,14 @@
     "environment_name": "data-processing-pipeline-example",
     "data_factory_compute_name": "adftest",
     "trigger": {
-        "type": "schedule",
+        "type": "change",
         "trigger_name": "data-processing-pipeline-template-schedule",
         "description": "A trigger based on either a schedule or an event trigger",
         "frequency": "Minute",
         "interval": 15,
         "polling_interval": 1,
-        "change_file_path": "test.txt"
+        "datastore_name": "workspaceblobstore",
+        "change_file_path": "test-data"
     },
     "endpoint": {
         "name": "data-processing-pipeline-template-endpoint",

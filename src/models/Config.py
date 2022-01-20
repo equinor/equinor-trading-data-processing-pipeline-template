@@ -12,6 +12,7 @@ class TriggerConfig(BaseModel):
     frequency: str                      # Frequency of a schedule, options: Minute", "Hour", "Day", "Week", or "Month"
     interval: int                       # Interval number for a schedule
     polling_interval: int               # Polling interval in minutes for a change trigger
+    datastore_name: str                 # Datastore to watch for changes on
     change_file_path: str               # File to watch for changes when a change trigger is running
 
 class PipelineConfig(BaseModel):
